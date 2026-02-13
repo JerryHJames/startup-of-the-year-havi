@@ -1,34 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Startup</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CH Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-    <!-- Note that the below Bootstrap file is a specific version. If you grab the most
-    current from Bootstrap website, you will see the button grow transition being a lot faster
-    than in my video.  Use whichever style sheet you like best! -->
-    <!-- Bootstrap CSS from a CDN. This way you don't have to include the bootstrap file yourself -->
-<!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">    <!-- My own stylesheet -->
-    <link href="style.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container d-flex align-items-center h-100">
-      <div class="row">
-        <header class="text-center">
-          <h1 class="text-uppercase"><strong>
-        The Biggest Start-Up Event of the Year!!!</strong></h1>
-        </header>
-        <div class="buffer col-12"></div>
-        <section class="text-center">
-          <hr>
-          <a href="https://mailchi.mp/4c27cbbc0777/startup"><button class="btn btn-primary btn-xl">Find Out More</button>
-        </section>
-      </div>
-    </div>
-  </body>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Loading screen -->
+  <div id="loader">
+    <div class="loader-ring"></div>
+    <div class="loader-text">CH</div>
+    <div class="loader-sub">PROJECTS</div>
+  </div>
+
+  <!-- Navigation overlay -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <img src="assets/logo-sm.svg" alt="CH" width="44" height="44">
+    </a>
+    <button class="nav-hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Bottom tagline -->
+  <div id="tagline">
+    <span class="tagline-line"></span>
+    <span class="tagline-text">Explore the Future</span>
+    <span class="tagline-line"></span>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
 </html>

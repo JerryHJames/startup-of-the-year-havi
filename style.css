@@ -1,49 +1,197 @@
-body,
-html {
+/* === Reset & Base === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  background: #05020e;
   font-family: 'Montserrat', sans-serif;
-  background: url(header.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  color: #fff;
 }
 
-h1 {
-  font-size: 3rem;
-  color: #e2dbdb;
+/* === Three.js Canvas === */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-hr {
-    margin: 20px auto;
-    color: #F05F44;
-    border: 3px solid #F05F44;
-    max-width: 65px;
-    opacity: 1;  
+/* === Loading Screen === */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #05020e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: opacity 1s ease;
 }
 
-.buffer {
-  height: 10rem;
+#loader.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.btn {
+.loader-ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid transparent;
+  border-top-color: #C4B5FD;
+  border-radius: 50%;
+  animation: spin 1.8s linear infinite;
+}
+
+.loader-ring::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid transparent;
+  border-top-color: rgba(196, 181, 253, 0.3);
+  border-radius: 50%;
+  animation: spin 2.4s linear infinite reverse;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-size: 2.4rem;
   font-weight: 700;
-  border-radius: 300px;
+  letter-spacing: 0.4em;
+  color: #C4B5FD;
+  text-shadow: 0 0 30px rgba(196, 181, 253, 0.5);
+}
+
+.loader-sub {
+  font-size: 0.7rem;
+  font-weight: 200;
+  letter-spacing: 0.6em;
+  color: rgba(196, 181, 253, 0.5);
+}
+
+/* === Navigation === */
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  pointer-events: none;
+}
+
+#nav > * {
+  pointer-events: auto;
+}
+
+.nav-logo {
+  display: block;
+  text-decoration: none;
+  transition: filter 0.3s;
+}
+
+.nav-logo:hover {
+  filter: drop-shadow(0 0 8px rgba(196, 181, 253, 0.6));
+}
+
+.nav-logo img {
+  display: block;
+}
+
+.nav-hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  transition: filter 0.3s;
+}
+
+.nav-hamburger:hover {
+  filter: drop-shadow(0 0 6px rgba(196, 181, 253, 0.5));
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: rgba(196, 181, 253, 0.8);
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+}
+
+.nav-hamburger span:nth-child(2) {
+  width: 18px;
+  margin-left: auto;
+}
+
+/* === Bottom Tagline === */
+#tagline {
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+}
+
+.tagline-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.4));
+}
+
+.tagline-line:last-child {
+  background: linear-gradient(90deg, rgba(196, 181, 253, 0.4), transparent);
+}
+
+.tagline-text {
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
+  color: rgba(196, 181, 253, 0.5);
 }
 
-.btn-primary {
-  background-color: #F05F44;
-  border-color: #F05F44;
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
-.btn-primary:hover {
-  background-color: #EE4B08;
-  border-color: #EE4B08
-  border-width: 4px;
-}
+/* === Mobile === */
+@media (max-width: 768px) {
+  #nav {
+    padding: 1rem;
+  }
 
-.btn-xl {
-  padding: 1rem 2rem;
+  .loader-text {
+    font-size: 1.8rem;
+  }
+
+  #tagline {
+    bottom: 1.5rem;
+  }
 }
