@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CH Projects</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script type="importmap">
@@ -19,13 +19,15 @@
 <body>
   <!-- Loading screen -->
   <div id="loader">
+    <div class="loader-ring"></div>
     <div class="loader-text">CH</div>
+    <div class="loader-sub">PROJECTS</div>
   </div>
 
   <!-- Navigation overlay -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      <img src="assets/logo-sm.svg" alt="CH" width="40" height="40">
+      <img src="assets/logo-sm.svg" alt="CH" width="44" height="44">
     </a>
     <button class="nav-hamburger" aria-label="Menu">
       <span></span>
@@ -34,7 +36,13 @@
     </button>
   </nav>
 
-  <!-- Three.js canvas inserted by renderer -->
+  <!-- Bottom tagline -->
+  <div id="tagline">
+    <span class="tagline-line"></span>
+    <span class="tagline-text">Explore the Future</span>
+    <span class="tagline-line"></span>
+  </div>
+
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

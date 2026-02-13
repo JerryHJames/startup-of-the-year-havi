@@ -4,7 +4,7 @@ let currentX = 0;
 let currentY = 0;
 
 const PARALLAX_STRENGTH = 2.0;
-const LERP_FACTOR = 0.05;
+const LERP_FACTOR = 0.04;
 let isMobile = false;
 let hasGyroscope = false;
 
@@ -13,7 +13,6 @@ export function initParallax() {
   isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   if (isMobile && window.DeviceOrientationEvent) {
-    // Try to use gyroscope on mobile
     window.addEventListener('deviceorientation', onDeviceOrientation);
     hasGyroscope = true;
   }
@@ -37,25 +36,25 @@ function onDeviceOrientation(e) {
   targetY = (e.beta || 0) / 45 - 1;
 }
 
-// --- Update (called every frame) ---
+// --- Update ---
 export function updateParallax(worldGroup) {
   // Auto-drift fallback for mobile without gyroscope
   if (isMobile && !hasGyroscope) {
     const t = performance.now() * 0.001;
-    targetX = Math.sin(t * 0.3) * 0.3;
-    targetY = Math.cos(t * 0.2) * 0.2;
+    targetX = Math.sin(t * 0.25) * 0.25;
+    targetY = Math.cos(t * 0.18) * 0.18;
   }
 
-  // Smooth lerp
+  // Smooth lerp (slightly slower for more cinematic feel)
   currentX += (targetX - currentX) * LERP_FACTOR;
   currentY += (targetY - currentY) * LERP_FACTOR;
 
-  // Rotate the world group subtly
+  // Rotate world group
   worldGroup.rotation.y = currentX * 0.05;
   worldGroup.rotation.x = currentY * 0.03;
 }
 
-// --- Get parallax offset for per-sphere positioning ---
+// --- Get parallax offset ---
 export function getParallaxOffset() {
   return {
     x: currentX * PARALLAX_STRENGTH,
